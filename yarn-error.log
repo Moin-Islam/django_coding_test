@@ -1,0 +1,62 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\shima\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js init
+
+PATH: 
+  E:\django-vuejs\django-coding-test-vuejs\django-coding-test\enviornment3_11_1\Scripts;C:\Program Files (x86)\Razer Chroma SDK\bin;C:\Program Files\Razer Chroma SDK\bin;C:\Program Files (x86)\Razer\ChromaBroadcast\bin;C:\Program Files\Razer\ChromaBroadcast\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps;C:\src\flutter\flutter\bin;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\sqlite3;C:\Program Files\PostgreSQL\15\bin;C:\Program Files\nodejs\;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Python27;C:\Users\shima\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\shima\AppData\Local\Programs\Python\Python311\;C:\Users\shima\AppData\Local\Microsoft\WindowsApps;C:\Users\shima\AppData\Local\Programs\Microsoft VS Code\bin;C:\src\flutter\flutter\bin;C:\Users\shima\.dotnet\tools;C:\sqlite3;C:\Program Files\PostgreSQL\15\bin;C:\Users\shima\AppData\Roaming\npm;C:\Program Files\nodejs;C:\xampp\php;C:\Users\shima\AppData\Roaming\Composer\vendor\bin;C:\Python27;
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.12.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (C:\Users\shima\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:137150:13)
+      at Interface.emit (node:events:513:28)
+      at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1124:18)
+      at ReadStream.onkeypress (node:internal/readline/interface:273:20)
+      at ReadStream.emit (node:events:513:28)
+      at emitKeys (node:internal/readline/utils:357:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
+      at ReadStream.emit (node:events:513:28)
+      at addChunk (node:internal/streams/readable:324:12)
+
+npm manifest: 
+  {
+    "name": "test_d",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+      "watch": "vue-cli-service serve",
+      "build": "vue-cli-service build",
+      "dev": "vue-cli-service build --mode development --watch"
+    },
+    "dependencies": {
+      "axios": "^0.25.0",
+      "core-js": "^3.6.5",
+      "jquery": "^3.6.0",
+      "startbootstrap-sb-admin-2": "^4.1.4",
+      "vue": "^2.6.11",
+      "vue-input-tag": "^2.0.7",
+      "vue2-dropzone": "^3.6.0"
+    },
+    "devDependencies": {
+      "@vue/cli-plugin-babel": "~4.5.0",
+      "@vue/cli-service": "~4.5.0",
+      "node-sass": "^4.12.0",
+      "sass-loader": "^8.0.2",
+      "vue-cli-plugin-source-dir": "^0.1.0",
+      "vue-template-compiler": "^2.6.11"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

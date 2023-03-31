@@ -1,128 +1,138 @@
 {% extends 'backend/base.html' %}
-
+{% load static %}
 {% block title %} Product List {% endblock %}
-
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 {% block content %}
+<div id="app">
+    {% if product_list %}
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Products</h1>
+    </div>
 
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Products</h1>
-</div>
+    <div class="card">
+        <form action="{% url 'product:list.product' %}" method="get" class="card-header">
+            <div class="form-row justify-content-between">
+                <div class="col-md-2">
+                    <input type="text" name="title" placeholder="Product Title" class="form-control"
+                        value="{{ request.GET.title }}">
+                </div>
+                <div class="col-md-2">
+                    <select name="variant" id="" class="form-control">
+                        <option selected disabled value="--Select A Variant--">--Select A Variant--</option>
+                    </select>
+                </div>
 
 
-<div class="card">
-    <form action="" method="get" class="card-header">
-        <div class="form-row justify-content-between">
-            <div class="col-md-2">
-                <input type="text" name="title" placeholder="Product Title" class="form-control">
-            </div>
-            <div class="col-md-2">
-                <select name="variant" id="" class="form-control">
-                    <option selected disabled>--Select A Variant--</option>
 
-                </select>
-            </div>
 
-            <div class="col-md-3">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Price Range</span>
+
+
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Price Range</span>
+                        </div>
+                        <input type="text" name="price_from" aria-label="First name" placeholder="From"
+                            class="form-control" value="{{ request.GET.price_from }}">
+                        <input type="text" name="price_to" aria-label="Last name" placeholder="To" class="form-control"
+                            value="{{ request.GET.price_to }}">
                     </div>
-                    <input type="text" name="price_from" aria-label="First name" placeholder="From"
-                           class="form-control">
-                    <input type="text" name="price_to" aria-label="Last name" placeholder="To" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <input type="date" name="date" placeholder="Date" class="form-control"
+                        value="{{ request.GET.date }}">
+                </div>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary float-right"><i class="fa fa-search"></i></button>
                 </div>
             </div>
-            <div class="col-md-2">
-                <input type="date" name="date" placeholder="Date" class="form-control">
-            </div>
-            <div class="col-md-1">
-                <button type="submit" class="btn btn-primary float-right"><i class="fa fa-search"></i></button>
-            </div>
-        </div>
-    </form>
-
+        </form>
+    </div>
     <div class="card-body">
         <div class="table-response">
             <table class="table">
                 <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Variant</th>
-                    <th width="150px">Action</th>
-                </tr>
+                    <tr>
+                        <th>id</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Variant</th>
+                        <th width="150px">Action</th>
+                    </tr>
                 </thead>
-
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>T-Shirt <br> Created at : 25-Aug-2020</td>
-                    <td>Quality product in low cost</td>
-                    <td>
-                        <dl class="row mb-0" style="height: 80px; overflow: hidden" id="variant">
-                                <dt class="col-sm-3 pb-0">
-                                    XL/ Black/ Full
-                                </dt>
+                    {% for product in product_list %}
+                    <tr>
+                        <td>{{ product.pk }}</td>
+                        <td>{{ product.title }}<br> Created at : {{ product.created_at }}</td>
+                        <td>{{ product.description }}</td>
+                        <td>
+                            {% for variant in product.variants.all %}
+                            <dl class="row mb-0" style="height: 80px; overflow: hidden">
+                                <dt class="col-sm-3 pb-0">{{ variant.title }}</dt>
                                 <dd class="col-sm-9">
                                     <dl class="row mb-0">
-                                        <dd class="col-sm-4 pb-0">Price : 200.0</dd>
-                                        <dd class="col-sm-8 pb-0">InStock : 50.</dd>
-                                    </dl>
-                                </dd>
-                                <dt class="col-sm-3 pb-0">
-                                    XL/ Black/ Half
-                                </dt>
-                                <dd class="col-sm-9">
-                                    <dl class="row mb-0">
-                                        <dd class="col-sm-4 pb-0">Price : 200.0</dd>
-                                        <dd class="col-sm-8 pb-0">InStock : 50.</dd>
-                                    </dl>
-                                </dd>
-                                <dt class="col-sm-3 pb-0">
-                                    L/ Black/ Full
-                                </dt>
-                                <dd class="col-sm-9">
-                                    <dl class="row mb-0">
-                                        <dd class="col-sm-4 pb-0">Price : 200.0</dd>
-                                        <dd class="col-sm-8 pb-0">InStock : 50.</dd>
-                                    </dl>
-                                </dd>
-                                <dt class="col-sm-3 pb-0">
-                                    L/ Black/ Half
-                                </dt>
-                                <dd class="col-sm-9">
-                                    <dl class="row mb-0">
-                                        <dd class="col-sm-4 pb-0">Price : 200.0</dd>
-                                        <dd class="col-sm-8 pb-0">InStock : 50.</dd>
+                                        <dd class="col-sm-4 pb-0">Price : {{ variant.price }}</dd>
+                                        <dd class="col-sm-8 pb-0">InStock : {{ variant.stock }}</dd>
                                     </dl>
                                 </dd>
                             </dl>
-                        <button onclick="$('#variant').toggleClass('h-auto')" class="btn btn-sm btn-link">Show more
-                        </button>
-                    </td>
-                    <td>
-                        <div class="btn-group btn-group-sm">
-                            <a href="" class="btn btn-success">Edit</a>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
+                            {% endfor %}
+                        </td>
 
+
+                        <td>
+                            <a href="{% url 'product:edit_product_detail' product.id %}" class="btn btn-primary">Edit</a>
+                        </td>
+
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5">No products found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
             </table>
         </div>
-
     </div>
-
     <div class="card-footer">
         <div class="row justify-content-between">
-            <div class="col-md-6">
-                <p>Showing 1 to 10 out of 100</p>
-            </div>
-            <div class="col-md-2">
-
+            <div class="card-footer">
+                <div class="row justify-content-between">
+                    <div class="col-md-6">
+                        <p>Showing {{ product_list.start_index }} to {{ product_list.end_index }} out of {{
+                            product_list|length }} products</p>
+                    </div>
+                    <div class="col-md-6">
+                        <nav>
+                            <ul class="pagination">
+                                {% if products.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ products.previous_page_number }}">&laquo;</a>
+                                </li>
+                                {% endif %}
+                                {% for page in page_range %}
+                                <li class="page-item{% if products.number == page %} active{% endif %}">
+                                    <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                                </li>
+                                {% endfor %}
+                                {% if products.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ products.next_page_number }}">&raquo;</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
 </div>
+</div>
+{% else %}
+<p>No products found.</p>
+{% endif %}
 {% endblock %}
+</div>
